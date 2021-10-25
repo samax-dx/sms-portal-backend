@@ -48,7 +48,7 @@ namespace sms_portal_backend
                 builder
                     .AllowAnyOrigin()
                     .AllowAnyHeader();
-            }); 
+            });
 
             app.UseRouting();
 
