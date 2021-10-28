@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using sms_portal_backend.Helpers;
 
 namespace sms_portal_backend
 {
@@ -25,6 +26,8 @@ namespace sms_portal_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(Configuration.GetSection("JwtSettings").Get<JwtSettings>());
+            services.AddScoped<JwtGenerator>();
             services.AddDbContext<smsportalContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -52,7 +55,7 @@ namespace sms_portal_backend
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

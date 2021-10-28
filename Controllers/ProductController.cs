@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +15,7 @@ namespace sms_portal_backend.Controllers
     public class ProductController : ControllerBase
     {
         private DbContext db;
+
         public ProductController(smsportalContext db)
         {
             this.db = db;

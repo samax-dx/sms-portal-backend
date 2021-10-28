@@ -14,6 +14,7 @@ namespace sms_portal_backend.Controllers
     public class CategoryController : ControllerBase
     {
         private DbContext db;
+
         public CategoryController(smsportalContext db)
         {
             this.db = db;

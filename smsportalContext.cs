@@ -20,6 +20,7 @@ namespace sms_portal_backend
 
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -68,6 +69,28 @@ namespace sms_portal_backend
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.SetNull);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User");
+
+                entity.HasIndex(e => e.Username, "IX_User_username")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.FirstName).HasColumnName("firstName");
+
+                entity.Property(e => e.LastName).HasColumnName("lastName");
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasColumnName("password");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasColumnName("username");
             });
 
             OnModelCreatingPartial(modelBuilder);
