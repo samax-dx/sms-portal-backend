@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 using sms_portal_backend.Entities;
+using sms_portal_backend.Helpers;
 
 
 namespace sms_portal_backend.Controllers
@@ -20,6 +21,7 @@ namespace sms_portal_backend.Controllers
             this.db = db;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IEnumerable<Category>> Get()
         {
