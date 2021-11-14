@@ -22,7 +22,7 @@ namespace sms_portal_backend.Controllers
             this.db = db;
         }
 
-        [HttpPost]
+        [HttpPost("SendSMS")]
         public async Task<IActionResult> SendSms([FromBody] SmsTask smsTask)
         {
             return await Task.Factory.StartNew<IActionResult>(() => Content(JsonSerializer.Serialize(smsTask)));
