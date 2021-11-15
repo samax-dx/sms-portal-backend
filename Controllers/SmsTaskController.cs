@@ -4,10 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Text.Json;
-
-using sms_portal_backend.Entities;
-using sms_portal_backend.Models;
-
+using SmsGateway;
 
 namespace sms_portal_backend.Controllers
 {
@@ -15,17 +12,20 @@ namespace sms_portal_backend.Controllers
     [Route("[controller]")]
     public class SmsTaskController : ControllerBase
     {
-        private DbContext db;
-
-        public SmsTaskController(smsportalContext db)
-        {
-            this.db = db;
-        }
-
         [HttpPost("SendSMS")]
-        public async Task<IActionResult> SendSms([FromBody] SmsTask smsTask)
+        public async Task<string> SendSms([FromBody] SmsTask smsTask)
         {
-            return await Task.Factory.StartNew<IActionResult>(() => Content(JsonSerializer.Serialize(smsTask)));
+            EndPoint endPoint = new EndPoint(new HttpConfig()
+            {
+                BaseUrl = ConfigSGW.baseUrl,
+                UrlSuffix = "/SendSMS",
+                ApiKey = ConfigSGW.apiKey,
+                ClientId = ConfigSGW.clientId
+            });
+
+            ISmsProvider smsProvider = new SmsProviderHttp(endPoint);
+
+            return await smsProvider.SendSms(smsTask);
         }
     }
 }

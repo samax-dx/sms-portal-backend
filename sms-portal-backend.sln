@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.11
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sms-portal-backend", "sms-portal-backend.csproj", "{E98D6B66-D87E-4C75-9B78-0CD7F0C9F033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sms-portal-backend", "sms-portal-backend.csproj", "{E98D6B66-D87E-4C75-9B78-0CD7F0C9F033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelcobrightUtil", "TelcobrightUtil\TelcobrightUtil.csproj", "{83EFB2A6-23E3-44E5-9F25-384993A4E33B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsGateway", "SmsGateway\SmsGateway.csproj", "{F6F211B2-4AD1-45B8-BE02-E8E1E8B7DA4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E98D6B66-D87E-4C75-9B78-0CD7F0C9F033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E98D6B66-D87E-4C75-9B78-0CD7F0C9F033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E98D6B66-D87E-4C75-9B78-0CD7F0C9F033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83EFB2A6-23E3-44E5-9F25-384993A4E33B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83EFB2A6-23E3-44E5-9F25-384993A4E33B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83EFB2A6-23E3-44E5-9F25-384993A4E33B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83EFB2A6-23E3-44E5-9F25-384993A4E33B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F211B2-4AD1-45B8-BE02-E8E1E8B7DA4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F211B2-4AD1-45B8-BE02-E8E1E8B7DA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F211B2-4AD1-45B8-BE02-E8E1E8B7DA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F211B2-4AD1-45B8-BE02-E8E1E8B7DA4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

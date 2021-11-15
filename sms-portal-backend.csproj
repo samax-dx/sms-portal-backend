@@ -6,6 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SmsGateway\**" />
+    <Compile Remove="TelcobrightUtil\**" />
+    <Compile Remove="_TelcobrightUtil\**" />
+    <Content Remove="SmsGateway\**" />
+    <Content Remove="TelcobrightUtil\**" />
+    <Content Remove="_TelcobrightUtil\**" />
+    <EmbeddedResource Remove="SmsGateway\**" />
+    <EmbeddedResource Remove="TelcobrightUtil\**" />
+    <EmbeddedResource Remove="_TelcobrightUtil\**" />
+    <None Remove="SmsGateway\**" />
+    <None Remove="TelcobrightUtil\**" />
+    <None Remove="_TelcobrightUtil\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Xpo" Version="21.1.6-pre-21260" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.11" />
     <PackageReference Include="JWT" Version="8.4.2" />
@@ -23,7 +39,10 @@
     <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="SmsGateway\SmsGateway.csproj" />
+    <ProjectReference Include="TelcobrightUtil\TelcobrightUtil.csproj" />
   </ItemGroup>
 </Project>
