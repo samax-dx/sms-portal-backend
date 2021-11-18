@@ -12,19 +12,16 @@ namespace sms_portal_backend.Controllers
     [Route("[controller]")]
     public class SmsTaskController : ControllerBase
     {
+        private readonly ISmsProvider smsProvider;
+
+        public SmsTaskController(SmsProviderHttp smsProvider)
+        {
+            this.smsProvider = smsProvider;
+        }
+
         [HttpPost("SendSMS")]
         public async Task<string> SendSms([FromBody] SmsTask smsTask)
         {
-            EndPoint endPoint = new EndPoint(new HttpConfig()
-            {
-                BaseUrl = ConfigSGW.baseUrl,
-                UrlSuffix = "/SendSMS",
-                ApiKey = ConfigSGW.apiKey,
-                ClientId = ConfigSGW.clientId
-            });
-
-            ISmsProvider smsProvider = new SmsProviderHttp(endPoint);
-
             return await smsProvider.SendSms(smsTask);
         }
     }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using sms_portal_backend.Helpers;
+using SmsGateway;
 
 namespace sms_portal_backend
 {
@@ -26,14 +27,28 @@ namespace sms_portal_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(Configuration.GetSection("JwtSettings").Get<JwtSettings>());
-            services.AddScoped<JwtGenerator>();
             services.AddDbContext<smsportalContext>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "sms_portal_backend", Version = "v1" });
             });
+
+            services.AddSingleton(Configuration.GetSection("JwtSettings").Get<JwtSettings>());
+            services.AddScoped<JwtGenerator>();
+
+            services.AddScoped(factory =>
+            {
+                var endpoint = new EndPoint(new HttpConfig()
+                {
+                    BaseUrl = ConfigSGW.baseUrl,
+                    ApiKey = ConfigSGW.apiKey,
+                    ClientId = ConfigSGW.clientId
+                });
+                return new SmsProviderHttp(endpoint);
+            });
+            services.AddScoped<ISmsProvider>(factory => factory.GetRequiredService<SmsProviderHttp>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
