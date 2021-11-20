@@ -14,7 +14,7 @@ namespace sms_portal_backend.Controllers
     {
         private readonly ISmsProvider smsProvider;
 
-        public SmsTaskController(SmsProviderHttp smsProvider)
+        public SmsTaskController(ISmsProvider smsProvider)
         {
             this.smsProvider = smsProvider;
         }

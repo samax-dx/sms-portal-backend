@@ -40,6 +40,10 @@ namespace sms_portal_backend
 
             services.AddScoped(factory =>
             {
+                return new SmsProviderSMPP();
+            });
+            services.AddScoped(factory =>
+            {
                 var endpoint = new EndPoint(new HttpConfig()
                 {
                     BaseUrl = ConfigSGW.baseUrl,
@@ -48,7 +52,11 @@ namespace sms_portal_backend
                 });
                 return new SmsProviderHttp(endpoint);
             });
-            services.AddScoped<ISmsProvider>(factory => factory.GetRequiredService<SmsProviderHttp>());
+            services.AddScoped(factory =>
+            {
+                var T = Type.GetType(Configuration.GetValue<string>("SmsProviderType"));
+                return (ISmsProvider)factory.GetRequiredService(T);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
