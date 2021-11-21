@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SmsGateway
 {
-    public class SmsProviderSMPP
+    public class SmsProviderSMPP : ISmsProvider
     {
         public SmsProviderSMPP() { }
         public async Task<string> SendSms(SmsTask smsTask)
